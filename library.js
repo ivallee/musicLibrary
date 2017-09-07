@@ -32,13 +32,13 @@ var library = {
 // p01: Coding Music - 2 tracks
 // p02: Other Playlist - 1 tracks
 
-
+var playlist = library.playlists;
+var songs = library.tracks;
 
 var printPlaylists = function (lib) {
  var output = '';
- var playlists = lib.playlists;
- for (var keys in playlists) {
-  var list = playlists[keys];
+ for (var keys in playlist) {
+  var list = playlist[keys];
   output += list.id + ': ' + list.name + ' - ' + list.tracks.length + '\n';
   }
  return output;
@@ -52,9 +52,8 @@ console.log(printPlaylists(library));
 
 var printTracks = function(lib) {
   var output = '';
-  var tracks = library.tracks;
-  for (var keys in tracks) {
-    var list = tracks[keys];
+  for (var keys in songs) {
+    var list = songs[keys];
     output += list.id + ': ' + list.name + ' by ' + list.artist + ' (' + list.album + ')' + '\n';
   }
   return output;
@@ -67,9 +66,17 @@ console.log(printTracks(library));
 // t02: Model View Controller by James Dempsey (WWDC 2003)
 
 var printPlaylist = function (playlistId) {
+  var output = '';
+  var pl = playlist[playlistId];
+  output += pl.id + ': ' + pl.name + ' - ' + pl.tracks.length + '\n';
+  pl.tracks.forEach(function(track){
+    var list = songs[track]
+    output += list.id + ': ' + list.name + ' by ' + list.artist + ' (' + list.album + ')' + '\n';
+  })
 
+  return output;
 }
-
+console.log(printPlaylist('p01'));
 
 // adds an existing track to an existing playlist
 
