@@ -23,8 +23,8 @@ var library = {
              }
 }
 
-// path: console.log(library.tracks.t01.name);
-
+var playlist = library.playlists;
+var songs = library.tracks;
 
 // FUNCTIONS TO IMPLEMENT:
 
@@ -32,8 +32,6 @@ var library = {
 // p01: Coding Music - 2 tracks
 // p02: Other Playlist - 1 tracks
 
-var playlist = library.playlists;
-var songs = library.tracks;
 
 var printPlaylists = function (lib) {
  var output = '';
@@ -73,7 +71,6 @@ var printPlaylist = function (playlistId) {
     var list = songs[track]
     output += list.id + ': ' + list.name + ' by ' + list.artist + ' (' + list.album + ')' + '\n';
   })
-
   return output;
 }
 console.log(printPlaylist('p01'));
@@ -81,9 +78,10 @@ console.log(printPlaylist('p01'));
 // adds an existing track to an existing playlist
 
 var addTrackToPlaylist = function (trackId, playlistId) {
-
+  var pl = playlist[playlistId].tracks;
+  pl.push(trackId);
 }
-
+addTrackToPlaylist('t01', 'p02');
 
 // generates a unique id
 // (use this for addTrack and addPlaylist)
@@ -92,20 +90,23 @@ var uid = function() {
   return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
 }
 
-
 // adds a track to the library
 
 var addTrack = function (name, artist, album) {
-
+  var newId = uid();
+  songs[newId] = {id: newId, name: name, artist: artist, album: album};
 }
-
+addTrack('Flowers are Dope', 'The Stoked Landscapers', 'Songs About Plants');
 
 // adds a playlist to the library
 
 var addPlaylist = function (name) {
-
+  var newId = uid();
+  playlist[newId] = {id: newId, name: name, tracks: []};
+  console.log(library);
 }
-
+addPlaylist('Sleepytime');
+console.log(library);
 
 // STRETCH:
 // given a query string string, prints a list of tracks
