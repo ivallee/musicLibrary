@@ -1,43 +1,42 @@
 // I DID IT!!!! Refactor/lint later!
-
 var library = {
   tracks: { t01: { id: "t01",
-                   name: "Code Monkey",
-                   artist: "Jonathan Coulton",
-                   album: "Thing a Week Three" },
-            t02: { id: "t02",
-                   name: "Model View Controller",
-                   artist: "James Dempsey",
-                   album: "WWDC 2003"},
-            t03: { id: "t03",
-                   name: "Four Thirty-Three",
-                   artist: "John Cage",
-                   album: "Woodstock 1952"}
-          },
-  playlists: { p01: { id: "p01",
-                      name: "Coding Music",
-                      tracks: ["t01", "t02"]
-                    },
-               p02: { id: "p02",
-                      name: "Other Playlist",
-                      tracks: ["t03"]
-                    }
-             },
-// // prints a list of all playlists, in the form:
-// // p01: Coding Music - 2 tracks
-// // p02: Other Playlist - 1 tracks
-  printPlaylists: function () {
-   var output = '';
-   for (var keys in this.playlists) {
-    var list = this.playlists[keys];
-    output += list.id + ': ' + list.name + ' - ' + list.tracks.length + '\n';
-    }
-   return output;
+    name: "Code Monkey",
+    artist: "Jonathan Coulton",
+    album: "Thing a Week Three" },
+  t02: { id: "t02",
+    name: "Model View Controller",
+    artist: "James Dempsey",
+    album: "WWDC 2003"},
+  t03: { id: "t03",
+    name: "Four Thirty-Three",
+    artist: "John Cage",
+    album: "Woodstock 1952"}
   },
-// // prints a list of all tracks, in the form:
-// // t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
-// // t02: Model View Controller by James Dempsey (WWDC 2003)
-// // t03: Four Thirty-Three by John Cage (Woodstock 1952)
+  playlists: { p01: { id: "p01",
+    name: "Coding Music",
+    tracks: ["t01", "t02"]
+  },
+  p02: { id: "p02",
+    name: "Other Playlist",
+    tracks: ["t03"]
+  }
+  },
+  // // prints a list of all playlists, in the form:
+  // // p01: Coding Music - 2 tracks
+  // // p02: Other Playlist - 1 tracks
+  printPlaylists: function () {
+    var output = '';
+    for (var keys in this.playlists) {
+      var list = this.playlists[keys];
+      output += list.id + ': ' + list.name + ' - ' + list.tracks.length + '\n';
+    }
+    return output;
+  },
+  // // prints a list of all tracks, in the form:
+  // // t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
+  // // t02: Model View Controller by James Dempsey (WWDC 2003)
+  // // t03: Four Thirty-Three by John Cage (Woodstock 1952)
   printTracks: function() {
     var output = '';
     for (var keys in this.tracks) {
@@ -54,11 +53,11 @@ var library = {
     var output = '';
     var pl = this.playlists[playlistId];
     var self = this;
-        output += pl.id + ': ' + pl.name + ' - ' + pl.tracks.length + '\n';
+    output += pl.id + ': ' + pl.name + ' - ' + pl.tracks.length + '\n';
     pl.tracks.forEach(function(track){
       var list = self.tracks[track];
       output += list.id + ': ' + list.name + ' by ' + list.artist + ' (' + list.album + ')' + '\n';
-    })
+    });
     return output;
   },
   addTrackToPlaylist: function (trackId, playlistId) {
@@ -77,6 +76,8 @@ var library = {
     library.playlists[newId] = {id: newId, name: name, tracks: []};
   }
 };
+
+//testing the things!
 console.log(library.printPlaylists());
 console.log(library.printTracks());
 console.log(library.printPlaylist('p01'));
